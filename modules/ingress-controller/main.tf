@@ -10,7 +10,7 @@ provider "helm" {
     exec {
     api_version = "client.authentication.k8s.io/v1beta1"
     command     = "aws"
-    args        = ["eks", "get-token", "--cluster-name", "nodejs-app"]
+    args        = ["eks", "get-token", "--cluster-name", var.cluster_name]
     }
   }
 }
@@ -22,7 +22,7 @@ provider "kubernetes" {
     exec {
     api_version = "client.authentication.k8s.io/v1beta1"
     command     = "aws"
-    args        = ["eks", "get-token", "--cluster-name", "nodejs-app"]
+    args        = ["eks", "get-token", "--cluster-name", var.cluster_name]
     }
 }
 
@@ -67,7 +67,7 @@ resource "helm_release" "loadbalancer_controller" {
 
   set {
     name  = "clusterName"
-    value = "nodejs-app"
+    value = var.cluster_name
   }
 
 }
@@ -96,14 +96,14 @@ data "http" "lbc_iam_policy" {
 }
 
 resource "aws_iam_policy" "lbc_iam_policy" {
-  name        = "nodejs-app-AWSLoadBalancerControllerIAMPolicy"
+  name        = "${var.cluster_name}-AWSLoadBalancerControllerIAMPolicy"
   path        = "/"
   description = "AWS Load Balancer Controller IAM Policy"
   policy      = data.http.lbc_iam_policy.body
 }
 
 resource "aws_iam_role" "lbc_iam_role" {
-  name = "nodejs-app-lbc-iam-role"
+  name = "${var.cluster_name}-lbc-iam-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

@@ -22,3 +22,8 @@ variable "vpc_public_subnets" {
   type        = list(string)
   description = "List of Public subnet IP range for VPC subnet creation"
 }
+
+variable "vpc_secondary_cidr_block" {
+  type        = list(string)
+  description = "Secondary CIDR Block IP range value for VPC"
+}

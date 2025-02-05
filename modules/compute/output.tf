@@ -26,3 +26,8 @@ output "eks_oidc_arn" {
   description = "ARN of the OpenID connect"
   value = aws_iam_openid_connect_provider.oidc_provider.arn
 }
+
+output "cluster_name" {
+    description = "Name of the cluster"
+    value = aws_eks_cluster.eks_cluster.name
+}

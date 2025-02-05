@@ -39,12 +39,12 @@ resource "aws_eks_node_group" "eks_ng_private" {
   ami_type       = "AL2_x86_64"
   capacity_type  = "ON_DEMAND"
   disk_size      = 20
-  instance_types = ["t3.medium"]
+  instance_types = ["m5.xlarge"]
 
   scaling_config {
-    desired_size = 1
+    desired_size = 2
     min_size     = 1
-    max_size     = 2
+    max_size     = 3
   }
 
   # Desired max percentage of unavailable worker nodes during node group update.

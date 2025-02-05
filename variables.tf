@@ -32,3 +32,8 @@ variable "eks_oidc_thumbprint" {
   type        = string
   description = "Thumbprint value for EKS OIDC"
 }
+
+variable "vpc_secondary_cidr_block" {
+  type        = list(string)
+  description = "Secondary CIDR Block IP range value for VPC"
+}

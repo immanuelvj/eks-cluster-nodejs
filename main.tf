@@ -14,6 +14,7 @@ module "networking" {
   vpc_availability_zones = var.vpc_availability_zones
   vpc_private_subnets    = var.vpc_private_subnets
   vpc_public_subnets     = var.vpc_public_subnets
+  vpc_secondary_cidr_block = var.vpc_secondary_cidr_block
 }
 
 module "compute" {
@@ -32,4 +33,5 @@ module "ingress-controller" {
   vpc_id                                           = module.networking.vpc_id
   eks_oidc_arn                                     = module.compute.eks_oidc_arn
   aws_iam_openid_connect_provider_extract_from_arn = module.compute.aws_iam_openid_connect_provider_extract_from_arn
+  cluster_name = module.compute.cluster_name
 }

@@ -32,3 +32,8 @@ variable "eks_oidc_arn" {
   type = string
   description = "EKS OpenID connect ARN"
 }
+
+variable "cluster_name" {
+  type = string
+  description = "name of the cluster"
+}

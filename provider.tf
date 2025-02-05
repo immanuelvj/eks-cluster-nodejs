@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket         = "nodejs-terraformstate-bucket"
+    bucket         = "nodejs-terraformstate-file-bucket"
     key            = "terraform/state"
     region         = "us-east-1"
-    dynamodb_table = "terraform-lock-table"
+    dynamodb_table = "terraform-lock-table-2"
   }
   required_providers {
     aws = {
